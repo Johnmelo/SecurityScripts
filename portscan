@@ -1,8 +1,7 @@
 #!/bin/bash
 #populate our variables from the arguments
-host=$1
-startport=$2
-stopport=$3
+paramslist=$@
+operationmode=$1
 
 #function pingcheck
 #ping a device to see if it is up
@@ -27,6 +26,35 @@ function portcheck
   done
 }
 
+#main function
+function main
+{
+i=0
+params=""
+
+for word in $paramslist
+do
+        #echo $word
+        params[i]=$word
+        i=$[$i+1]
+done
+
+case "$operationmode" in
+        "-Sa") echo "OPERATION MODE: $operationmode"
+                host=${params[1]}
+                echo "HOST: $host"
+                startport=${params[2]}
+                echo "PORT START: $startport"
+                stopport=${params[3]}
+                echo "PORT STOP: $stopport"
+  echo ${params[0]}
+                pingcheck
+                portcheck;;
+        *) echo "UNKNOOW OPERATION MODE";;
+esac
+
+}
+
 #run our functions
-pingcheck
-portcheck
+main
+
