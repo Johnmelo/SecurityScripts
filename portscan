@@ -40,12 +40,12 @@ do
 done
 
 case "$operationmode" in
-        "-Sa") echo "OPERATION MODE: $operationmode"
-                host=${params[1]}
+        "-Sa")  host=${params[1]}
+		startport=${params[2]}
+		stopport=${params[3]}
+		echo "OPERATION MODE: $operationmode"
                 echo "HOST: $host"
-                startport=${params[2]}
                 echo "PORT START: $startport"
-                stopport=${params[3]}
                 echo "PORT STOP: $stopport"
   echo ${params[0]}
                 pingcheck
