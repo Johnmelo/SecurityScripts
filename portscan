@@ -2,6 +2,7 @@
 #populate our variables from the arguments
 paramslist=$@
 operationmode=$1
+params=""
 
 #function pingcheck
 #ping a device to see if it is up
@@ -30,7 +31,7 @@ function portcheck
 function main
 {
 i=0
-params=""
+#params
 
 for word in $paramslist
 do
@@ -47,10 +48,29 @@ case "$operationmode" in
                 echo "HOST: $host"
                 echo "PORT START: $startport"
                 echo "PORT STOP: $stopport"
-  echo ${params[0]}
                 pingcheck
                 portcheck;;
-        *) echo "UNKNOOW OPERATION MODE";;
+
+	"-Ma") 	startport=${params[${#params[@]}-2]}
+		stopport=${params[${#params[@]}-1]}
+		for((count=1;count<${#params[@]}-2;count++));
+		do
+	       		host=${params[count]}
+			echo "SCANING $host ..."
+			pingcheck
+			portcheck
+		done;;
+
+	"-h") 	echo "Sintaxe: [operation mode] [options mode] [options arguments]"
+		echo "OPERATION MODE:"
+		echo "	-Sa options_mode options_arguments -> perform scan over a single ip address"
+		echo "	-Ma blablabla -> perform scan over multiples address ip"
+		echo "OPTIONS MODE:"
+		echo "	-"
+		echo "OPTIONS ARGUMENTS:"
+		echo "	-";;
+
+        *) echo "UNKNOOW OPERATION MODE, TYPE -h FOR HELP";;
 esac
 
 }
