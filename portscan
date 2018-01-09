@@ -64,11 +64,12 @@ case "$operationmode" in
 	"-h") 	echo "Sintaxe: [operation mode] [options mode] [options arguments]"
 		echo "OPERATION MODE:"
 		echo "	-Sa options_mode options_arguments -> perform scan over a single ip address"
-		echo "	-Ma blablabla -> perform scan over multiples address ip"
+		echo "	-Ma options_mode options_arguments -> perform scan over multiples address ip"
 		echo "OPTIONS MODE:"
-		echo "	-"
+		echo "	-Sa [IP_ADDRESS_TO_SCAN] options_arguments"
+		echo "	-Ma [IP_ADDRESS_TO_SCAN_1 ... IP_ADDRESS_TO_SCAN_n] [options_arguments]"
 		echo "OPTIONS ARGUMENTS:"
-		echo "	-";;
+		echo "	[start_port stop_port] ";;
 
         *) echo "UNKNOOW OPERATION MODE, TYPE -h FOR HELP";;
 esac
