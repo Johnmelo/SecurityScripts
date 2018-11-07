@@ -69,7 +69,11 @@ case "$operationmode" in
 		echo "	-Sa [IP_ADDRESS_TO_SCAN] options_arguments"
 		echo "	-Ma [IP_ADDRESS_TO_SCAN_1 ... IP_ADDRESS_TO_SCAN_n] [options_arguments]"
 		echo "OPTIONS ARGUMENTS:"
-		echo "	[start_port stop_port] ";;
+		echo "	[start_port stop_port] "
+		echo ""
+		echo "examples:"
+		echo "	-Sa 127.0.0.1 10 100"
+		echo "	-Ma 192.168.0.10 192.168.0.20 192.168.0.25 20 150";;
 
         *) echo "UNKNOOW OPERATION MODE, TYPE -h FOR HELP";;
 esac
