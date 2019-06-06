@@ -8,7 +8,12 @@ wget http://www.openinfosecfoundation.org/download/suricata-3.1.tar.gz
 tar -xvzf suricata-3.1.tar.gz
 cd suricata-3.1
 
-./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
-make
-sudo make install
-sudo ldconfig
+./configure && make && make install-full
+
+sudo mkdir /var/log/suricata
+sudo mkdir /etc/suricata
+
+cd suricata-3.1/
+sudo cp classification.config /etc/suricata
+sudo cp reference.config /etc/suricata
+sudo cp suricata.yaml /etc/suricata
